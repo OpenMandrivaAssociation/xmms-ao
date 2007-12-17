@@ -12,7 +12,6 @@ License:		GPL
 Group:			Sound
 Requires:		xmms
 BuildRequires:		xmms-devel, libao-devel, gtk+-devel
-BuildRoot:		%{_tmppath}/%{name}-buildroot
 Obsoletes:		xmmsao <= 0.6
 Provides:		xmmsao > 0.6
 
