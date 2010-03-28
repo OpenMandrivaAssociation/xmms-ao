@@ -1,13 +1,14 @@
 %define name xmms-ao
 %define tarball_name xmmsao
 %define version 0.7
-%define release %mkrel 8
+%define release %mkrel 9
 
 Summary:		Output plugin for xmms using libao2
 Name:			%{name}
 Version:		%{version}
 Release:		%{release}
 Source:			%{tarball_name}-%{version}.tar.bz2
+Patch0:			xmmsao-0.7-link.patch
 License:		GPL
 Group:			Sound
 Requires:		xmms
@@ -29,10 +30,14 @@ generic library, an output plugin which operates closer to the actual output
 system may be preferable in some cases.
 
 %prep
-%setup
+%setup -qn %name-%version
+%patch0 -p0
 
 %build
-%make CC="gcc -fPIC"
+export CFLAGS="%optflags -fPIC"
+%define _disable_ld_no_undefined 1
+%setup_compile_flags
+%make
 
 %install
 rm -rf $RPM_BUILD_ROOT
