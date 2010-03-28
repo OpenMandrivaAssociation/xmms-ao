@@ -1,7 +1,7 @@
 %define name xmms-ao
 %define tarball_name xmmsao
 %define version 0.7
-%define release %mkrel 7
+%define release %mkrel 8
 
 Summary:		Output plugin for xmms using libao2
 Name:			%{name}
