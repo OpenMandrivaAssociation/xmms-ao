@@ -1,0 +1,16 @@
+--- Makefile.link	2010-03-28 06:47:38.000000000 +0200
++++ Makefile	2010-03-28 06:47:43.000000000 +0200
+@@ -1,10 +1,10 @@
+ CC = gcc
+-CFLAGS = -g -Wall -D_REENTRANT -O2
+-LDFLAGS = -lao -ldl -lm -lpthread `gtk-config --libs` `xmms-config --libs`
++CFLAGS ?= -g -Wall -D_REENTRANT -O2
++LIBS += -lao -ldl -lm -lpthread `gtk-config --libs` `xmms-config --libs`
+ XMMSFLAGS = `xmms-config --cflags`
+ 
+ libaoout.so:	about.o ao.o audio.o configure.o init.o
+-	$(CC) $(LDFLAGS) -shared -o $(@) $(^) -Wl,-soname -Wl,$(@)
++	$(CC) $(LDFLAGS) -shared -o $(@) $(^) -Wl,-soname -Wl,$(@) $(LIBS)
+ 
+ about.o:	about.c aoout.h
+ 	$(CC) $(CFLAGS) $(XMMSFLAGS) `gtk-config --cflags` -c -o $(@) about.c
